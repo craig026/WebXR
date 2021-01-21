@@ -63,7 +63,7 @@ class App{
 
         const geometry = new THREE.IcosahedronBufferGeometry(this.radius, 2);
 
-        for(let i=0, i<200, i++){
+        for(let i = 0; i < 200; i++){
             const object = new THREE.Mesh(geometry, new THREE.MeshLambertMaterial({
                 color: Math.random() * 0xffffff     
 			}));
