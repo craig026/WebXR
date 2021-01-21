@@ -57,7 +57,7 @@ class App{
               mesh.position.set(0,0,-0.3).applyMatrix4(controller.matrixWorld);
               mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
               self.scene.add(mesh);
-              self.meshes.push(Mesh);
+              self.meshes.push(mesh);
 		}
 
         const btn = new ARButton(this.renderer);
