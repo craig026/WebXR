@@ -120,6 +120,14 @@ class App{
     
     initScene(){
         this.loadKnight();
+
+        this.reticle = new THREE.Mesh(
+            new THREE.RingBufferGeometry(0.15, 0.2, 32).rotateX(-Math.PI/2);
+            new THREE.MeshBasicMaterial();
+            this.reticle.visible = false;
+            this.scene.add(this.reticle);
+		)
+        
     }
     
     setupXR(){
@@ -143,7 +151,25 @@ class App{
     }
     
     requestHitTestSource(){
-        
+        const self = this;
+
+        const session = this.renderer.xr.getSession();
+
+        session.requestReferenceSpace('viewer').then(function(referenceSpace)
+        {
+          session.requestHitTestSource({space:referenceSpace}).then(
+          function(source){
+            self.hitTestSource = source;
+           })  
+		});
+
+        session.addEventListener('end', function(){
+            self.hitTestSourceRequested = false;
+            self.hitTestSource = null;
+            self.referenceSpace = null;
+		});
+
+        this.hitTestSourceRequested = true;
 
     }
     
