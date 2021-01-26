@@ -79,7 +79,7 @@ class App{
 			`train.glb`,
 			// called when the resource is loaded
 			function ( gltf ) {
-				const object = gltf.scene.children[5];
+				const object = gltf.scene.children[0];
 				
 				const options = {
 					object: object,
