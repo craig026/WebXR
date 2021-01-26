@@ -79,7 +79,7 @@ class App{
 			`train_LowPoly.glb`,
 			// called when the resource is loaded
 			function ( gltf ) {
-				const object = gltf.scene.children[0];
+				const object = gltf.scene.children[0].children[0];
 				
 				const options = {
 					object: object,
