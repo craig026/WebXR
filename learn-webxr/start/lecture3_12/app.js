@@ -122,7 +122,7 @@ class App{
         this.loadKnight();
 
         this.reticle = new THREE.Mesh(
-            new THREE.RingBufferGeometry(0.15, 0.2, 32).rotateX(-Math.PI/2);
+            new THREE.RingBufferGeometry(0.15, 0.2, 32).rotateX(-Math.PI/2),
             new THREE.MeshBasicMaterial();
             this.reticle.visible = false;
             this.scene.add(this.reticle);
