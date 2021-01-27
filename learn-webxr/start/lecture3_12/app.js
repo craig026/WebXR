@@ -76,7 +76,7 @@ class App{
 		// Load a GLTF resource
 		loader.load(
 			// resource URL
-			`chair.glb`,
+			`office-chair.glb`,
 			// called when the resource is loaded
 			function ( gltf ) {
 				//const object = gltf.scene.children[0];
@@ -114,7 +114,7 @@ class App{
 			// called when loading has errors
 			function ( error ) {
 
-				console.log( 'An error happened' );
+				console.log( 'An error has happened' );
 
 			}
 		);
