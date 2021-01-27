@@ -212,7 +212,7 @@ class App{
 
     render( timestamp, frame ) {
         const dt = this.clock.getDelta();
-        if (this.knight) this.knight.update(dt);
+        //if (this.knight) this.knight.update(dt);
 
         const self = this;
         
