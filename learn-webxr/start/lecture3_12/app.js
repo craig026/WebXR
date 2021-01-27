@@ -79,9 +79,10 @@ class App{
 			`chair.glb`,
 			// called when the resource is loaded
 			function ( gltf ) {
-				const object = gltf.scene.children[5];
-				
-				const options = {
+				//const object = gltf.scene.children[0];
+				self.knight = gltf.scene.children[0];
+                self.scene.add(self.knight);
+				/*const options = {
 					object: object,
 					speed: 0.5,
 					assetsPath: self.assetsPath,
@@ -91,15 +92,16 @@ class App{
 					app: self,
 					name: 'knight',
 					npc: false
-				};
+				};*/
 				
-				self.knight = new Player(options);
-                self.knight.object.visible = false;
-				
-				self.knight.action = 'Dance';
-				const scale = 0.005;
-				self.knight.object.scale.set(scale, scale, scale); 
-				
+				//self.knight = new Player(options);
+                //self.knight.object.visible = false;
+				self.knight.visible = false;
+				//self.knight.action = 'Dance';
+				const scale = 0.001;
+				//self.knight.object.scale.set(scale, scale, scale); 
+				self.knight.scale.set(scale, scale, scale); 
+
                 self.loadingBar.visible = false;
                 self.renderer.setAnimationLoop( self.render.bind(self) );//(timestamp, frame) => { self.render(timestamp, frame); } );
 			},
