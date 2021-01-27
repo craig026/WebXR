@@ -75,52 +75,21 @@ class App{
 		
 		// Load a GLTF resource
 		loader.load(
-			// resource URL
 			`train_LowPoly.glb`,
-			// called when the resource is loaded
 			function ( gltf ) {
-				//const object = gltf.scene;
-				
-				/*const options = {
-					object: object,
-					speed: 0.5,
-					assetsPath: self.assetsPath,
-					loader: loader,
-                    animations: gltf.animations,
-					clip: gltf.animations[0],
-					app: self,
-					name: 'knight',
-					npc: false*/
-
                 self.train = gltf.scene;
                 self.scene.add(gltf.scene);
                 self.loadingBar.visible = false;
                 self.renderer.setAnimationLoop( self.render.bind(self) );
-				};
-				
-				//self.knight = new Player(options);
-                //self.knight.object.visible = false;
-				
-				//self.knight.action = 'Dance';
-				//const scale = 0.005;
-				//self.knight.object.scale.set(scale, scale, scale); 
-				
-                //self.loadingBar.visible = false;
-                //self.renderer.setAnimationLoop( self.render.bind(self) );
+				},
 			},
-			// called while loading is progressing
 			function ( xhr ) {
-
 				self.loadingBar.progress = (xhr.loaded / xhr.total);
-
 			},
-			// called when loading has errors
 			function ( error ) {
-
 				console.log( 'An error happened' );
-
 			}
-		);
+		)
 	}		
     
     initScene(){
