@@ -80,7 +80,7 @@ class App{
 			// called when the resource is loaded
 			function ( gltf ) {
 				//const object = gltf.scene.children[0];
-				self.knight = gltf.scene;
+				self.knight = gltf.scene.children[2];
                 self.scene.add(self.knight);
 				/*const options = {
 					object: object,
@@ -98,7 +98,7 @@ class App{
                 //self.knight.object.visible = false;
 				self.knight.visible = false;
 				//self.knight.action = 'Dance';
-				const scale = 0.001;
+				const scale = 0.005;
 				//self.knight.object.scale.set(scale, scale, scale); 
 				self.knight.scale.set(scale, scale, scale); 
 
@@ -114,7 +114,7 @@ class App{
 			// called when loading has errors
 			function ( error ) {
 
-				console.log( 'An error has happened' );
+				console.log( 'An error happened' );
 
 			}
 		);
