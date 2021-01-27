@@ -80,7 +80,7 @@ class App{
 			// called when the resource is loaded
 			function ( gltf ) {
 				//const object = gltf.scene.children[0];
-				self.knight = gltf.scene.children[2];
+				self.knight = gltf.scene;
                 self.scene.add(self.knight);
 				/*const options = {
 					object: object,
