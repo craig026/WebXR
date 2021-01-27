@@ -79,9 +79,9 @@ class App{
 			`train_LowPoly.glb`,
 			// called when the resource is loaded
 			function ( gltf ) {
-				const object = gltf.scene;
+				//const object = gltf.scene;
 				
-				const options = {
+				/*const options = {
 					object: object,
 					speed: 0.5,
 					assetsPath: self.assetsPath,
@@ -90,18 +90,23 @@ class App{
 					clip: gltf.animations[0],
 					app: self,
 					name: 'knight',
-					npc: false
-				};
-				
-				self.knight = new Player(options);
-                self.knight.object.visible = false;
-				
-				self.knight.action = 'Dance';
-				const scale = 0.005;
-				self.knight.object.scale.set(scale, scale, scale); 
-				
+					npc: false*/
+
+                self.train = gltf.scene;
+                self.scene.add(gltf.scene);
                 self.loadingBar.visible = false;
                 self.renderer.setAnimationLoop( self.render.bind(self) );
+				};
+				
+				//self.knight = new Player(options);
+                //self.knight.object.visible = false;
+				
+				//self.knight.action = 'Dance';
+				//const scale = 0.005;
+				//self.knight.object.scale.set(scale, scale, scale); 
+				
+                //self.loadingBar.visible = false;
+                //self.renderer.setAnimationLoop( self.render.bind(self) );
 			},
 			// called while loading is progressing
 			function ( xhr ) {

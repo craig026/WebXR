@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\complete",
+    "\\complete\\lecture3_12",
     "\\start",
-    "\\start\\lecture3_11"
+    "\\start\\lecture3_12"
   ],
-  "SelectedNode": "\\start\\lecture3_11\\app.js",
+  "SelectedNode": "\\complete\\lecture3_12\\app.js",
   "PreviewInSolutionExplorer": false
 }
