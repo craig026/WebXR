@@ -75,9 +75,9 @@ class App{
 		
 		// Load a GLTF resource
 		loader.load(
-			`train_LowPoly.glb`,
+			`chair.glb`,
 			function ( gltf ) {
-                self.train = gltf.scene;
+                self.chair = gltf.scene;
                 self.scene.add(gltf.scene);
                 self.loadingBar.visible = false;
                 self.renderer.setAnimationLoop( self.render.bind(self) );
