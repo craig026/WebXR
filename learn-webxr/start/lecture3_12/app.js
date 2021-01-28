@@ -146,6 +146,7 @@ class App{
         this.renderer.xr.enabled = true;
         
         const self = this;
+        let controller, controller1;
 
         const btn = new ARButton( this.renderer, { sessionInit: { requiredFeatures: [ 'hit-test' ], optionalFeatures: [ 'dom-overlay' ], domOverlay: { root: document.body } } } );
         
