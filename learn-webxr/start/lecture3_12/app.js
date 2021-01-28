@@ -39,6 +39,9 @@ class App{
         this.setEnvironment();
         
         this.workingVec3 = new THREE.Vector3();
+        this.origin = new THREE.Vector3();
+        this.euler = new THREE.Euler();
+        this.quaternion = new THREE.Quaternion();
         
         this.initScene();
         this.setupXR();
@@ -193,7 +196,6 @@ class App{
                 //}else{
                     self.knight.position.setFromMatrixPosition( self.reticle.matrix );
                     self.knight.visible = true;
-                    self.reticle.visible = false;
                 }
             }
         }
@@ -240,8 +242,10 @@ class App{
             const hit = hitTestResults[ 0 ];
             const pose = hit.getPose( referenceSpace );
 
-            this.reticle.visible = true;
-            this.reticle.matrix.fromArray( pose.transform.matrix );
+            if(!self.knight.visible){
+                this.reticle.visible = true;
+                this.reticle.matrix.fromArray( pose.transform.matrix );
+			};
 
         } else {
 
@@ -254,7 +258,11 @@ class App{
     render( timestamp, frame ) {
         const dt = this.clock.getDelta();
         //if (this.knight) this.knight.update(dt);
-
+        if ( this.renderer.xr.isPresenting ){
+            this.gestures.update();
+        }
+        if ( this.knight !== undefined ) this.knight.update(dt);
+        
         const self = this;
         
         if ( frame ) {
