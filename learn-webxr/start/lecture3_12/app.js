@@ -71,12 +71,16 @@ class App{
     
     loadKnight(){
 	    const loader = new GLTFLoader().setPath(this.assetsPath);
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath( '../../libs/three/js/draco/' );        
+        loader.setDRACOLoader( dracoLoader );
+
 		const self = this;
 		
 		// Load a GLTF resource
 		loader.load(
 			// resource URL
-			`office-chair.glb`,
+			`chair.glb`,
 			// called when the resource is loaded
 			function ( gltf ) {
 				//const object = gltf.scene.children[0];
