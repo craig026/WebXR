@@ -5,6 +5,7 @@ import { RGBELoader } from '../../libs/three/jsm/RGBELoader.js';
 import { ARButton } from '../../libs/ARButton.js';
 import { LoadingBar } from '../../libs/LoadingBar.js';
 import { Player } from '../../libs/Player.js';
+import { ControllerGestures } from '../../libs/ControllerGestures.js';
 
 class App{
 	constructor(){
@@ -141,9 +142,43 @@ class App{
     setupXR(){
         this.renderer.xr.enabled = true;
         
+        const self = this;
+
         const btn = new ARButton( this.renderer, { sessionInit: { requiredFeatures: [ 'hit-test' ], optionalFeatures: [ 'dom-overlay' ], domOverlay: { root: document.body } } } );
         
-        const self = this;
+        this.gestures = new ControllerGestures( this.renderer );
+        this.gestures.addEventListener( 'pan', (ev)=>{
+            //console.log( ev );
+            if (ev.initialise !== undefined){
+                self.startPosition = self.knight.position.clone();
+            }else{
+                const pos = self.startPosition.clone().add( ev.delta.multiplyScalar(3) );
+                self.knight.position.copy( pos );
+                self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, x:${ev.delta.z.toFixed(3)}` );
+            } 
+        });
+
+        this.gestures.addEventListener( 'pinch', (ev)=>{
+            //console.log( ev );  
+            if (ev.initialise !== undefined){
+                self.startScale = self.knight.scale.clone();
+            }else{
+                const scale = self.startScale.clone().multiplyScalar(ev.scale);
+                self.knight.scale.copy( scale );
+                self.ui.updateElement('info', `pinch delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
+            }
+        });
+
+        this.gestures.addEventListener( 'rotate', (ev)=>{
+            //      sconsole.log( ev ); 
+            if (ev.initialise !== undefined){
+                self.startQuaternion = self.knight.quaternion.clone();
+            }else{
+                self.knight.quaternion.copy( self.startQuaternion );
+                self.knight.rotateY( ev.theta );
+                self.ui.updateElement('info', `rotate ${ev.theta.toFixed(3)}`  );
+            }
+        });
 
         this.hitTestSourceRequested = false;
         this.hitTestSource = null;
