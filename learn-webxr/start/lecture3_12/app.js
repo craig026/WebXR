@@ -147,12 +147,12 @@ class App{
             if (self.knight===undefined) return;
             
             if (self.reticle.visible){
-                if (self.knight.object.visible){
-                    self.workingVec3.setFromMatrixPosition( self.reticle.matrix );
-                    self.knight.newPath(self.workingVec3);
-                }else{
-                    self.knight.object.position.setFromMatrixPosition( self.reticle.matrix );
-                    self.knight.object.visible = true;
+                if (!self.knight.visible){
+                    //self.workingVec3.setFromMatrixPosition( self.reticle.matrix );
+                    //self.knight.newPath(self.workingVec3);
+                //}else{
+                    self.knight.position.setFromMatrixPosition( self.reticle.matrix );
+                    self.knight.visible = true;
                 }
             }
         }
