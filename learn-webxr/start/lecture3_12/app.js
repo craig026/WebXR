@@ -82,7 +82,7 @@ class App{
 		// Load a GLTF resource
 		loader.load(
 			// resource URL
-			`chair.glb`,
+			`train_LowPoly.glb`,
 			// called when the resource is loaded
 			function ( gltf ) {
 				//const object = gltf.scene.children[0];
