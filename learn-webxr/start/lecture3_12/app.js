@@ -261,7 +261,7 @@ class App{
         if ( this.renderer.xr.isPresenting ){
             this.gestures.update();
         }
-        if ( this.knight !== undefined ) this.knight.update(dt);
+        //if ( this.knight !== undefined ) this.knight.update(dt);
         
         const self = this;
         
