@@ -98,7 +98,7 @@ class App{
                 //self.knight.object.visible = false;
 				self.knight.visible = false;
 				//self.knight.action = 'Dance';
-				const scale = 0.005;
+				const scale = 1;
 				//self.knight.object.scale.set(scale, scale, scale); 
 				self.knight.scale.set(scale, scale, scale); 
 
