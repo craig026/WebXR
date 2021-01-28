@@ -157,7 +157,7 @@ class App{
             }else{
                 const pos = self.startPosition.clone().add( ev.delta.multiplyScalar(3) );
                 self.knight.position.copy( pos );
-                self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, x:${ev.delta.z.toFixed(3)}` );
+                //self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, x:${ev.delta.z.toFixed(3)}` );
             } 
         });
 
@@ -168,7 +168,7 @@ class App{
             }else{
                 const scale = self.startScale.clone().multiplyScalar(ev.scale);
                 self.knight.scale.copy( scale );
-                self.ui.updateElement('info', `pinch delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
+                //self.ui.updateElement('info', `pinch delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
             }
         });
 
@@ -179,7 +179,7 @@ class App{
             }else{
                 self.knight.quaternion.copy( self.startQuaternion );
                 self.knight.rotateY( ev.theta );
-                self.ui.updateElement('info', `rotate ${ev.theta.toFixed(3)}`  );
+                //self.ui.updateElement('info', `rotate ${ev.theta.toFixed(3)}`  );
             }
         });
 
