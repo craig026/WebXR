@@ -64,7 +64,7 @@ class App{
 			`knight2.glb`,
 			// called when the resource is loaded
             function (gltf) {
-                self.knight = gltf.scene.children[5];
+                self.knight = gltf.scene;
                 self.scene.add(self.knight);
 				//const object = gltf.scene.children[5];
 				
