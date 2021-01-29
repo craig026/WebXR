@@ -16,6 +16,10 @@ class App {
 
         this.clock = new THREE.Clock();
 
+        this.loadingBar = new LoadingBar();
+
+        this.assetsPath = '../../assets/';
+
         this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 20);
 
         this.scene = new THREE.Scene();
