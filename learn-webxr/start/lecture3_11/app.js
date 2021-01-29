@@ -52,15 +52,12 @@ class App {
         window.addEventListener('resize', this.resize.bind(this));
     }
 
-    initScene() {
-        this.loadingBar = new LoadingBar();
-
+    loadKnight() {
         const loader = new GLTFLoader().setPath(this.assetsPath);
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath('../../libs/three/js/draco/');
         loader.setDRACOLoader(dracoLoader);
 
-        this.assetsPath = '../../assets/';
         const self = this;
 
         // Load a GLTF resource
@@ -69,16 +66,15 @@ class App {
             `train_LowPoly.glb`,
             // called when the resource is loaded
             function (gltf) {
-                //const object = gltf.scene;
                 self.knight = gltf.scene;
                 self.scene.add(self.knight);
 
                 self.knight.visible = false;
-
-                const scale = 0.1;
+                const scale = 0.1; 
                 self.knight.scale.set(scale, scale, scale);
 
                 self.loadingBar.visible = false;
+                self.renderer.setAnimationLoop(self.render.bind(self));//(timestamp, frame) => { self.render(timestamp, frame); } );
             },
             // called while loading is progressing
             function (xhr) {
@@ -89,10 +85,14 @@ class App {
             // called when loading has errors
             function (error) {
 
-                console.log('An error happened');
+                console.log('An error has happened');
 
             }
         );
+    }	
+
+    initScene() {
+        this.loadKnight();
 
         this.createUI();
     }
