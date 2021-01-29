@@ -63,18 +63,17 @@ class App{
 			// resource URL
 			`knight2.glb`,
 			// called when the resource is loaded
-            function (gltf) {
-                self.knight = gltf.scene;
-				//const object = gltf.scene.children[5];
+			function ( gltf ) {
+				const object = gltf.scene.children[5];
 				
-				/*object.traverse(function(child){
+				object.traverse(function(child){
 					if (child.isMesh){
                         child.material.metalness = 0;
                         child.material.roughness = 1;
 					}
-				});*/
+				});
 				
-				/*const options = {
+				const options = {
 					object: object,
 					speed: 0.5,
 					animations: gltf.animations,
@@ -82,14 +81,14 @@ class App{
 					app: self,
 					name: 'knight',
 					npc: false
-				};*/
+				};
 				
-				//self.knight = new Player(options);
+				self.knight = new Player(options);
                 self.knight.object.visible = false;
 				
-				//self.knight.action = 'Dance';
-				const scale = 0.01;
-				self.knight.scale.set(scale, scale, scale); 
+				self.knight.action = 'Dance';
+				const scale = 0.003;
+				self.knight.object.scale.set(scale, scale, scale); 
 				
                 self.loadingBar.visible = false;
 			},
