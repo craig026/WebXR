@@ -151,6 +151,25 @@ class App{
         const btn = new ARButton( this.renderer, { sessionInit: { requiredFeatures: [ 'hit-test' ], optionalFeatures: [ 'dom-overlay' ], domOverlay: { root: document.body } } } );
         
         this.gestures = new ControllerGestures( this.renderer );
+
+        this.gestures.addEventListener('tap', (ev)=>{
+            //console.log('tap');
+            //self.ui.updateElement('info', 'tap');
+
+            if (self.knight===undefined) return;
+            
+            if (self.reticle.visible){
+                if (!self.knight.visible){
+                    //self.workingVec3.setFromMatrixPosition( self.reticle.matrix );
+                    //self.knight.newPath(self.workingVec3);
+                //}else{
+                    self.knight.position.setFromMatrixPosition( self.reticle.matrix );
+                    self.knight.visible = true;
+                    self.reticle.visible = false;
+                }
+            }
+		});
+
         this.gestures.addEventListener( 'pan', (ev)=>{
             //console.log( ev );
             if (ev.initialise !== undefined){
@@ -202,10 +221,10 @@ class App{
             }
         }
 
-        this.controller = this.renderer.xr.getController( 0 );
-        this.controller.addEventListener( 'select', onSelect );
+        //this.controller = this.renderer.xr.getController( 0 );
+        //this.controller.addEventListener( 'select', onSelect );
         
-        this.scene.add( this.controller );    
+        //this.scene.add( this.controller );    
     }
     
     requestHitTestSource(){
