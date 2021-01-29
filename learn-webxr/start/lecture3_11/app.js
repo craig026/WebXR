@@ -61,7 +61,6 @@ class App {
         loader.setDRACOLoader(dracoLoader);
 
         this.assetsPath = '../../assets/';
-        const loader = new GLTFLoader().setPath(this.assetsPath);
         const self = this;
 
         // Load a GLTF resource
