@@ -65,6 +65,7 @@ class App{
 			// called when the resource is loaded
             function (gltf) {
                 self.knight = gltf.scene;
+                self.scene.add(self.knight);
 				//const object = gltf.scene.children[5];
 				
 				/*object.traverse(function(child){
