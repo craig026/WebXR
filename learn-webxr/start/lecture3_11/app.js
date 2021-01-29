@@ -127,6 +127,25 @@ class App{
     setupXR(){
         this.renderer.xr.enabled = true; 
         
+        const btn = new ARButton( this.renderer, { sessionInit: { requiredFeatures: [ 'hit-test' ], optionalFeatures: [ 'dom-overlay' ], domOverlay: { root: document.body } } } );
+
+        this.hitTestSourceRequested = false;
+        this.hitTestSource = null;
+
+                function onSelect() {
+            if (self.knight===undefined) return;
+            
+            if (self.reticle.visible){
+                if (self.knight.object.visible){
+                    self.workingVec3.setFromMatrixPosition( self.reticle.matrix );
+                    self.knight.newPath(self.workingVec3);
+                }else{
+                    self.knight.object.position.setFromMatrixPosition( self.reticle.matrix );
+                    self.knight.object.visible = true;
+                }
+            }
+        }
+
         const self = this;
         let controller, controller1;
         
@@ -144,7 +163,7 @@ class App{
         //Add gestures here
         this.gestures = new ControllerGestures(this.renderer);
 
-        this.gestures.addEventListener('tap', (ev)=>{
+        /*this.gestures.addEventListener('tap', (ev)=>{
             //console.log('tap');
             self.ui.updateElement('info', 'tap');
 
@@ -153,7 +172,7 @@ class App{
                 self.knight.object.position.set(0, -0.3, -0.5).add(ev.position);
                 self.scene.add(self.knight.object);
 			}
-		});
+		});*/
 
         this.gestures.addEventListener('swipe', (ev)=>{
             //console.log(ev);
