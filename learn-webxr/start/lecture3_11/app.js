@@ -132,7 +132,7 @@ class App{
         this.hitTestSourceRequested = false;
         this.hitTestSource = null;
 
-                function onSelect() {
+        /*function onSelect() {
             if (self.knight===undefined) return;
             
             if (self.reticle.visible){
@@ -144,7 +144,7 @@ class App{
                     self.knight.object.visible = true;
                 }
             }
-        }
+        }*/
 
         const self = this;
         let controller, controller1;
@@ -163,16 +163,22 @@ class App{
         //Add gestures here
         this.gestures = new ControllerGestures(this.renderer);
 
-        /*this.gestures.addEventListener('tap', (ev)=>{
+        this.gestures.addEventListener('tap', (ev)=>{
             //console.log('tap');
             self.ui.updateElement('info', 'tap');
 
-            if(!self.knight.object.visible){
-                self.knight.object.visible = true;
-                self.knight.object.position.set(0, -0.3, -0.5).add(ev.position);
-                self.scene.add(self.knight.object);
-			}
-		});*/
+            if (self.knight===undefined) return;
+            
+            if (self.reticle.visible){
+                if (self.knight.object.visible){
+                    self.workingVec3.setFromMatrixPosition( self.reticle.matrix );
+                    self.knight.newPath(self.workingVec3);
+                }else{
+                    self.knight.object.position.setFromMatrixPosition( self.reticle.matrix );
+                    self.knight.object.visible = true;
+                }
+            }
+		});
 
         this.gestures.addEventListener('swipe', (ev)=>{
             //console.log(ev);
@@ -218,6 +224,53 @@ class App{
 		})
 
         this.renderer.setAnimationLoop( this.render.bind(this) );
+    }
+
+        requestHitTestSource(){
+        const self = this;
+        
+        const session = this.renderer.xr.getSession();
+
+        session.requestReferenceSpace( 'viewer' ).then( function ( referenceSpace ) {
+            
+            session.requestHitTestSource( { space: referenceSpace } ).then( function ( source ) {
+
+                self.hitTestSource = source;
+
+            } );
+
+        } );
+
+        session.addEventListener( 'end', function () {
+
+            self.hitTestSourceRequested = false;
+            self.hitTestSource = null;
+            self.referenceSpace = null;
+
+        } );
+
+        this.hitTestSourceRequested = true;
+
+    }
+    
+    getHitTestResults( frame ){
+        const hitTestResults = frame.getHitTestResults( this.hitTestSource );
+
+        if ( hitTestResults.length ) {
+            
+            const referenceSpace = this.renderer.xr.getReferenceSpace();
+            const hit = hitTestResults[ 0 ];
+            const pose = hit.getPose( referenceSpace );
+
+            this.reticle.visible = true;
+            this.reticle.matrix.fromArray( pose.transform.matrix );
+
+        } else {
+
+            this.reticle.visible = false;
+
+        }
+
     }
     
     resize(){
