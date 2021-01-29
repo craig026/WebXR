@@ -86,7 +86,7 @@ class App{
 				};*/
 				
 				//self.knight = new Player(options);
-                self.knight.object.visible = false;
+                self.knight.visible = false;
 				
 				//self.knight.action = 'Dance';
 				const scale = 0.01;
