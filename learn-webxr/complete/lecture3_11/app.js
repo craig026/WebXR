@@ -89,7 +89,7 @@ class App{
                 self.knight.visible = false;
 				
 				//self.knight.action = 'Dance';
-				const scale = 0.01;
+				const scale = 0.1;
 				self.knight.scale.set(scale, scale, scale); 
 				
                 self.loadingBar.visible = false;
@@ -165,38 +165,38 @@ class App{
         this.gestures.addEventListener( 'pan', (ev)=>{
             //console.log( ev );
             if (ev.initialise !== undefined){
-                self.startPosition = self.knight.object.position.clone();
+                self.startPosition = self.knight.position.clone();
             }else{
                 const pos = self.startPosition.clone().add( ev.delta.multiplyScalar(3) );
-                self.knight.object.position.copy( pos );
+                self.knight.position.copy( pos );
                 self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, x:${ev.delta.z.toFixed(3)}` );
             } 
         });
         this.gestures.addEventListener( 'swipe', (ev)=>{
             //console.log( ev );   
             self.ui.updateElement('info', `swipe ${ev.direction}` );
-            if (self.knight.object.visible){
-                self.knight.object.visible = false;
-                self.scene.remove( self.knight.object ); 
+            if (self.knight.visible){
+                self.knight.visible = false;
+                self.scene.remove( self.knight ); 
             }
         });
         this.gestures.addEventListener( 'pinch', (ev)=>{
             //console.log( ev );  
             if (ev.initialise !== undefined){
-                self.startScale = self.knight.object.scale.clone();
+                self.startScale = self.knight.scale.clone();
             }else{
                 const scale = self.startScale.clone().multiplyScalar(ev.scale);
-                self.knight.object.scale.copy( scale );
+                self.knight.scale.copy( scale );
                 self.ui.updateElement('info', `pinch delta:${ev.delta.toFixed(3)} scale:${ev.scale.toFixed(2)}` );
             }
         });
         this.gestures.addEventListener( 'rotate', (ev)=>{
             //      sconsole.log( ev ); 
             if (ev.initialise !== undefined){
-                self.startQuaternion = self.knight.object.quaternion.clone();
+                self.startQuaternion = self.knight.quaternion.clone();
             }else{
-                self.knight.object.quaternion.copy( self.startQuaternion );
-                self.knight.object.rotateY( ev.theta );
+                self.knight.quaternion.copy( self.startQuaternion );
+                self.knight.rotateY( ev.theta );
                 self.ui.updateElement('info', `rotate ${ev.theta.toFixed(3)}`  );
             }
         });
