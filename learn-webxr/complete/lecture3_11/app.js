@@ -216,7 +216,7 @@ class App{
             this.gestures.update();
             this.ui.update();
         }
-        if ( this.knight !== undefined ) this.knight.update(dt);
+        //if ( this.knight !== undefined ) this.knight.update(dt);
         this.renderer.render( this.scene, this.camera );
     }
 }
