@@ -286,6 +286,15 @@ class App{
             this.gestures.update();
             this.ui.update();
         }
+
+        if ( frame ) {
+
+            if ( this.hitTestSourceRequested === false ) this.requestHitTestSource( )
+
+            if ( this.hitTestSource ) this.getHitTestResults( frame );
+
+        }
+
         if ( this.knight !== undefined ) this.knight.update(dt);
         this.renderer.render( this.scene, this.camera );
     }
