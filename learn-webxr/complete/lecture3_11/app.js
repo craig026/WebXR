@@ -53,6 +53,14 @@ class App{
 	}	
     
     initScene(){
+        this.reticle = new THREE.Mesh(
+            new THREE.RingBufferGeometry( 0.15, 0.2, 32 ).rotateX( - Math.PI / 2 ),
+            new THREE.MeshBasicMaterial()
+        );
+        
+        this.reticle.matrixAutoUpdate = false;
+        this.reticle.visible = false;
+        this.scene.add( this.reticle );
         this.loadingBar = new LoadingBar();
         
         this.assetsPath = '../../assets/';
@@ -154,10 +162,15 @@ class App{
         this.gestures.addEventListener( 'tap', (ev)=>{
             //console.log( 'tap' ); 
             self.ui.updateElement('info', 'tap' );
-            if (!self.knight.visible){
-                self.knight.visible = true;
-                self.knight.position.set( 0, -0.3, -0.5 ).add( ev.position );
-                self.scene.add( self.knight ); 
+            if (self.reticle.visible){
+                if (!self.knight.visible){
+                    //self.workingVec3.setFromMatrixPosition( self.reticle.matrix );
+                    //self.knight.newPath(self.workingVec3);
+                //}else{
+                    self.knight.position.setFromMatrixPosition( self.reticle.matrix );
+                    self.knight.visible = true;
+                    self.reticle.visible = false;
+                }
             }
         });
         /*this.gestures.addEventListener( 'doubletap', (ev)=>{
@@ -206,8 +219,60 @@ class App{
                 self.ui.updateElement('info', `rotate ${ev.theta.toFixed(3)}`  );
             }
         });
+
+        this.hitTestSourceRequested = false;
+        this.hitTestSource = null;
         
         this.renderer.setAnimationLoop( this.render.bind(this) );
+    }
+
+        requestHitTestSource(){
+        const self = this;
+        
+        const session = this.renderer.xr.getSession();
+
+        session.requestReferenceSpace( 'viewer' ).then( function ( referenceSpace ) {
+            
+            session.requestHitTestSource( { space: referenceSpace } ).then( function ( source ) {
+
+                self.hitTestSource = source;
+
+            } );
+
+        } );
+
+        session.addEventListener( 'end', function () {
+
+            self.hitTestSourceRequested = false;
+            self.hitTestSource = null;
+            self.referenceSpace = null;
+
+        } );
+
+        this.hitTestSourceRequested = true;
+
+    }
+    
+    getHitTestResults( frame ){
+        const hitTestResults = frame.getHitTestResults( this.hitTestSource );
+        const self = this;
+        if ( hitTestResults.length ) {
+            
+            const referenceSpace = this.renderer.xr.getReferenceSpace();
+            const hit = hitTestResults[ 0 ];
+            const pose = hit.getPose( referenceSpace );
+
+            if(!self.knight.visible){
+                this.reticle.visible = true;
+                this.reticle.matrix.fromArray( pose.transform.matrix );
+			};
+
+        } else {
+
+            this.reticle.visible = false;
+
+        }
+
     }
     
     resize(){
@@ -216,7 +281,7 @@ class App{
         this.renderer.setSize( window.innerWidth, window.innerHeight );  
     }
     
-	render( ) {   
+	render( timestamp, frame ) {   
         const dt = this.clock.getDelta();
         this.stats.update();
         if ( this.renderer.xr.isPresenting ){
@@ -224,6 +289,17 @@ class App{
             this.ui.update();
         }
         //if ( this.knight !== undefined ) this.knight.update(dt);
+
+        const self = this;
+        
+        if ( frame ) {
+
+            if ( this.hitTestSourceRequested === false ) this.requestHitTestSource( )
+
+            if ( this.hitTestSource ) this.getHitTestResults( frame );
+
+        }
+
         this.renderer.render( this.scene, this.camera );
     }
 }
