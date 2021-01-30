@@ -154,14 +154,14 @@ class App{
                 self.scene.add( self.knight ); 
             }
         });
-        /*this.gestures.addEventListener( 'doubletap', (ev)=>{
+        this.gestures.addEventListener( 'doubletap', (ev)=>{
             //console.log( 'doubletap'); 
             self.ui.updateElement('info', 'doubletap' );
-        });*/
-        /*this.gestures.addEventListener( 'press', (ev)=>{
+        });
+        this.gestures.addEventListener( 'press', (ev)=>{
             //console.log( 'press' );    
             self.ui.updateElement('info', 'press' );
-        });*/
+        });
         this.gestures.addEventListener( 'pan', (ev)=>{
             //console.log( ev );
             if (ev.initialise !== undefined){
@@ -172,14 +172,14 @@ class App{
                 self.ui.updateElement('info', `pan x:${ev.delta.x.toFixed(3)}, y:${ev.delta.y.toFixed(3)}, x:${ev.delta.z.toFixed(3)}` );
             } 
         });
-        /*this.gestures.addEventListener( 'swipe', (ev)=>{
+        this.gestures.addEventListener( 'swipe', (ev)=>{
             //console.log( ev );   
             self.ui.updateElement('info', `swipe ${ev.direction}` );
             if (self.knight.visible){
                 self.knight.visible = false;
                 self.scene.remove( self.knight ); 
             }
-        });*/
+        });
         this.gestures.addEventListener( 'pinch', (ev)=>{
             //console.log( ev );  
             if (ev.initialise !== undefined){
