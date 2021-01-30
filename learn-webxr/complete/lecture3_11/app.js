@@ -156,7 +156,7 @@ class App{
             self.camera.remove( self.ui.mesh );
         }
         
-        const btn = new ARButton( this.renderer, { sessionInit: { requiredFeatures: [ 'hit-test' ], optionalFeatures: [ 'dom-overlay' ], domOverlay: { root: document.body } } } );
+        const btn = new ARButton( this.renderer, { sessionInit: { requiredFeatures: [ 'hit-test' ]/*, optionalFeatures: [ 'dom-overlay' ], domOverlay: { root: document.body }*/ } } );
         
         this.gestures = new ControllerGestures( this.renderer );
         this.gestures.addEventListener( 'tap', (ev)=>{
