@@ -67,7 +67,7 @@ class App{
 		// Load a GLTF resource
 		loader.load(
 			// resource URL
-			`knight2a.glb`,
+			`train_LowPoly.glb`,
 			// called when the resource is loaded
             function (gltf) {
                 self.knight = gltf.scene;
