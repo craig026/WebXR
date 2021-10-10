@@ -89,20 +89,20 @@ class App{
 					}
 				});*/
 				
-				/*const options = {
+				const options = {
 					object: object,
 					speed: 0.5,
 					animations: gltf.animations,
 					clip: gltf.animations[0],
 					app: self,
-					name: 'knight',
+					name: 'senny',
 					npc: false
-				};*/
+				};
 				
-				//self.knight = new Player(options);
+				self.knight = new Player(options);
                 self.knight.visible = false;
 				
-				//self.knight.action = 'Dance';
+				self.knight.action = 'hover';
 				const scale = 1;
 				self.knight.scale.set(scale, scale, scale); 
 				
@@ -288,7 +288,7 @@ class App{
             this.gestures.update();
             this.ui.update();
         }
-        //if ( this.knight !== undefined ) this.knight.update(dt);
+        if ( this.knight !== undefined ) this.knight.update(dt);
 
         const self = this;
         
