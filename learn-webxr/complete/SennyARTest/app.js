@@ -99,10 +99,10 @@ class App{
 					npc: false
 				};
 				
-				self.knight = new Player(options);
+				//self.knight = new Player(options);
                 self.knight.visible = false;
 				
-				self.knight.action = 'hover';
+				//self.knight.action = 'Dance';
 				const scale = 1;
 				self.knight.scale.set(scale, scale, scale); 
 				
@@ -288,7 +288,7 @@ class App{
             this.gestures.update();
             this.ui.update();
         }
-        if ( this.knight !== undefined ) this.knight.update(dt);
+        //if ( this.knight !== undefined ) this.knight.update(dt);
 
         const self = this;
         
