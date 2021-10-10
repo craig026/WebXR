@@ -80,7 +80,7 @@ class App{
             function (gltf) {
                 self.knight = gltf.scene;
                 self.scene.add(self.knight);
-				//const object = gltf.scene.children[5];
+				const object = gltf.scene;
 				
 				/*object.traverse(function(child){
 					if (child.isMesh){
