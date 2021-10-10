@@ -89,15 +89,15 @@ class App{
 					}
 				});*/
 				
-				const options = {
+				/*const options = {
 					object: object,
 					speed: 0.5,
 					animations: gltf.animations,
 					clip: gltf.animations[0],
 					app: self,
-					name: 'senny',
+					name: 'knight',
 					npc: false
-				};
+				};*/
 				
 				//self.knight = new Player(options);
                 self.knight.visible = false;
