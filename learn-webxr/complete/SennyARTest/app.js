@@ -102,10 +102,7 @@ class App{
                 let mixer = new THREE.AnimationMixer(gltf.scene);
                 const clips = gltf.animations;
 
-                // Try update the mixer on each frame
-                function update(){
-                    mixer.update(deltaSeconds);
-                }
+
     
                 const clip = THREE.AnimationClip.findByName(clips, 'Hover');
                 const action = mixer.clipAction(clip);
@@ -302,6 +299,11 @@ class App{
             this.ui.update();
         }
         //if ( this.knight !== undefined ) this.knight.update(dt);
+
+        // Try update the mixer on each frame
+        function update(){
+            mixer.update(deltaSeconds);
+        }
 
         const self = this;
         
