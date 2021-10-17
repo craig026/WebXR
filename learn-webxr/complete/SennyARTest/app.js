@@ -99,17 +99,17 @@ class App{
 					npc: false
 				};*/
                 // Try play ahover animation
-                let mixer = new THREE.AnimationMixer(gltf.scene);
-                const clips = gltf.animations;
+                //let mixer = new THREE.AnimationMixer(gltf.scene);
+                //const clips = gltf.animations;
 
                 // Try update the mixer on each frame
-                function update(){
-                    mixer.update(deltaSeconds);
-                }
+                //function update(){
+                //    mixer.update(deltaSeconds);
+                //}
     
-                const clip = THREE.AnimationClip.findByName(clips, 'Hover');
-                const action = mixer.clipAction(clip);
-                action.play();
+                //const clip = THREE.AnimationClip.findByName(clips, 'Hover');
+                //const action = mixer.clipAction(clip);
+                //action.play();
 				
 				//self.knight = new Player(options);
                 self.knight.visible = false;
