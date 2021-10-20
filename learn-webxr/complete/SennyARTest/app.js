@@ -83,7 +83,6 @@ class App{
                 self.mixer.clipAction(gltf.animations[0]).play();
                 self.scene.add(self.knight);
 
-                self.knight.lookAt(this.camera.position);
 				//const object = gltf.scene.children[5];
 				
 				/*object.traverse(function(child){
@@ -294,6 +293,7 @@ class App{
             this.ui.update();
         }
         //if ( this.knight !== undefined ) this.knight.update(dt);
+        this.knight.lookAt(this.camera.position);
 
         if(this.mixer){
             this.mixer.update(dt);
