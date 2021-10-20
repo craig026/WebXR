@@ -293,8 +293,8 @@ class App{
         }
         //if ( this.knight !== undefined ) this.knight.update(dt);
 
-        if(mixer){
-            mixer.update(dt);
+        if(this.mixer){
+            this.mixer.update(dt);
         }
 
         const self = this;
