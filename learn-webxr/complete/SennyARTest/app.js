@@ -79,8 +79,8 @@ class App{
 			// called when the resource is loaded
             function (gltf) {
                 self.knight = gltf.scene;
-                mixer = new THREE.AnimationMixer(self.knight);
-                mixer.clipAction(gltf.animations[0]).play();
+                self.mixer = new THREE.AnimationMixer(self.knight);
+                self.mixer.clipAction(gltf.animations[0]).play();
                 self.scene.add(self.knight);
 				//const object = gltf.scene.children[5];
 				
