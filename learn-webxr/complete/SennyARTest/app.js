@@ -292,8 +292,11 @@ class App{
             this.gestures.update();
             this.ui.update();
         }
-        //if ( this.knight !== undefined ) this.knight.update(dt);
-        this.knight.lookAt(this.camera.position);
+        if ( this.knight !== undefined ) {
+            this.knight.update(dt);
+            this.knight.lookAt(this.camera.position);
+        }
+        
 
         if(this.mixer){
             this.mixer.update(dt);
