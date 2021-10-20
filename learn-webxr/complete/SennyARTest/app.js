@@ -82,6 +82,8 @@ class App{
                 self.mixer = new THREE.AnimationMixer(self.knight);
                 self.mixer.clipAction(gltf.animations[0]).play();
                 self.scene.add(self.knight);
+
+                self.knight.lookAt(this.camera.position);
 				//const object = gltf.scene.children[5];
 				
 				/*object.traverse(function(child){
