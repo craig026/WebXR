@@ -79,6 +79,8 @@ class App{
 			// called when the resource is loaded
             function (gltf) {
                 self.knight = gltf.scene;
+                mixer = new THREE.AnimationMixer(self.knight);
+                mixer.clipAction(gltf.animations[0]).play();
                 self.scene.add(self.knight);
 				//const object = gltf.scene.children[5];
 				
@@ -98,15 +100,6 @@ class App{
 					name: 'knight',
 					npc: false
 				};*/
-                // Try play ahover animation
-                let mixer = new THREE.AnimationMixer(gltf.scene);
-                const clips = gltf.animations;
-
-
-    
-                const clip = THREE.AnimationClip.findByName(clips, 'Hover');
-                const action = mixer.clipAction(clip);
-                action.play();
 				
 				//self.knight = new Player(options);
                 self.knight.visible = false;
@@ -300,9 +293,8 @@ class App{
         }
         //if ( this.knight !== undefined ) this.knight.update(dt);
 
-        // Try update the mixer on each frame
-        function update(){
-            mixer.update(deltaSeconds);
+        if(mixer){
+            mixer.update(dt);
         }
 
         const self = this;
