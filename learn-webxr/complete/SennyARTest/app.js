@@ -79,8 +79,8 @@ class App{
 			// called when the resource is loaded
             function (gltf) {
                 self.knight = gltf.scene;
-                //self.mixer = new THREE.AnimationMixer(self.knight);
-                //self.mixer.clipAction(gltf.animations[0]).play();
+                self.mixer = new THREE.AnimationMixer(self.knight);
+                self.mixer.clipAction(gltf.animations[0]).play();
                 self.scene.add(self.knight);
 				//const object = gltf.scene.children[5];
 				
@@ -293,9 +293,9 @@ class App{
         }
         //if ( this.knight !== undefined ) this.knight.update(dt);
 
-        /*if(this.mixer){
+        if(this.mixer){
             this.mixer.update(dt);
-        }*/
+        }
 
         const self = this;
         
