@@ -174,7 +174,6 @@ class App{
                     self.knight.position.setFromMatrixPosition( self.reticle.matrix );
                     self.knight.visible = true;
                     self.reticle.visible = false;
-                    console.log("Should be placed!");
                 }
             }
         });
@@ -294,8 +293,8 @@ class App{
             this.ui.update();
         }
 
-        if ( this.knight.visible) {
-            //this.knight.update(dt);
+        if ( this.knight !== undefined ) {
+            this.knight.update(dt);
             this.knight.lookAt(this.camera.position);
         }
 
