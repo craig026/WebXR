@@ -293,7 +293,7 @@ class App{
             this.ui.update();
         }
 
-        if ( this.knight !== undefined ) {
+        if ( self.knight.viisible ) {
             this.knight.update(dt);
             this.knight.lookAt(this.camera.position);
         }
