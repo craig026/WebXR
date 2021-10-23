@@ -174,6 +174,7 @@ class App{
                     self.knight.position.setFromMatrixPosition( self.reticle.matrix );
                     self.knight.visible = true;
                     self.reticle.visible = false;
+                    console.log("Should be placed!");
                 }
             }
         });
